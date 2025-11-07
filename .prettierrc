@@ -11,19 +11,13 @@
   "printWidth": 100,
   "endOfLine": "lf",
   "proseWrap": "always",
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-organize-imports"],
+  "plugins": ["prettier-plugin-astro"],
   "htmlWhitespaceSensitivity": "ignore",
   "overrides": [
     {
       "files": "*.astro",
       "options": {
         "parser": "astro"
-      }
-    },
-    {
-      "files": ["*.md", "*.mdx"],
-      "options": {
-        "parser": "markdown"
       }
     }
   ]

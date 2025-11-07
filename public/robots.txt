@@ -1,0 +1,6 @@
+# Allow all bots to crawl and index the site
+User-agent: *
+Allow: /
+
+# Sitemap location (optional - only if you have a sitemap)
+# Sitemap: https://yoursite.com/sitemap.xml

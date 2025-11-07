@@ -1,21 +1,12 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '../layouts/main.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>🧑‍🚀 Hello, Astronaut!</h1>
-      <p>Under construction 🫠</p>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Layout
+  title="Corey Burns - Blog"
+  description="Welcome to my blog. Full-stack developer crafting beautiful, performant web experiences."
+>
+  <main class="font-sans">
+    <h1>Under construction</h1>
+  </main>
+</Layout>
