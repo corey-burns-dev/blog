@@ -3,28 +3,45 @@
 
 /* CSS Variables for theming */
 :root {
-  /* Light mode colors */
-  --color-bg-primary: 255 255 255;
-  --color-bg-secondary: 249 250 251;
-  --color-text-primary: 31 41 55;
-  --color-text-secondary: 75 85 99;
-  --color-text-muted: 107 114 128;
-  --color-border: 229 231 235;
+  /* Neutral palette (light theme) */
+  --neutral-100: 255 255 255;
+  --neutral-200: 249 250 251;
+  --neutral-300: 229 231 235;
+  --neutral-500: 107 114 128;
+  --neutral-600: 75 85 99;
+  --neutral-700: 31 41 55;
+
+  /* Semantic tokens referencing neutrals */
+  --color-bg-primary: var(--neutral-100);
+  --color-bg-secondary: var(--neutral-200);
+  --color-text-primary: var(--neutral-700);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-muted: var(--neutral-500);
+  --color-border: var(--neutral-300);
   --color-accent: 59 130 246;
   --color-accent-hover: 37 99 235;
+
   --font-mono:
     ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono',
     'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
 html.dark {
-  /* Dark mode colors */
-  --color-bg-primary: 17 24 39;
-  --color-bg-secondary: 31 41 55;
-  --color-text-primary: 243 244 246;
-  --color-text-secondary: 209 213 219;
-  --color-text-muted: 156 163 175;
-  --color-border: 55 65 81;
+  /* Neutral palette overrides (dark theme) */
+  --neutral-100: 17 24 39;
+  --neutral-200: 31 41 55;
+  --neutral-300: 55 65 81;
+  --neutral-500: 156 163 175;
+  --neutral-600: 209 213 219;
+  --neutral-700: 243 244 246;
+
+  /* Semantic tokens reuse neutral mappings */
+  --color-bg-primary: var(--neutral-100);
+  --color-bg-secondary: var(--neutral-200);
+  --color-text-primary: var(--neutral-700);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-muted: var(--neutral-500);
+  --color-border: var(--neutral-300);
   --color-accent: 96 165 250;
   --color-accent-hover: 59 130 246;
   color-scheme: dark;
@@ -96,5 +113,36 @@ html.dark {
     overflow: visible;
     clip: auto;
     white-space: normal;
+  }
+
+  :where(.theme-toggle) {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(var(--color-border));
+    background-color: rgb(var(--color-bg-secondary));
+    color: rgb(var(--color-text-primary));
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  :where(.theme-toggle:hover) {
+    color: rgb(var(--color-accent));
+  }
+
+  :where(.theme-toggle:focus-visible) {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 0.25rem;
   }
 }

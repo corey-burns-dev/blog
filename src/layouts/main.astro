@@ -38,8 +38,74 @@ const {
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={Astro.url} />
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const shouldUseDark = stored ? stored === 'dark' : prefersDark;
+          document.documentElement.classList.toggle('dark', shouldUseDark);
+        } catch (error) {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', prefersDark);
+        }
+      })();
+    </script>
   </head>
-  <body class="antialiased bg-white dark:bg-black transition-colors duration-300">
+  <body class="antialiased">
+    <button
+      data-theme-toggle
+      class="theme-toggle"
+      type="button"
+      aria-label="Toggle color theme"
+      aria-pressed="false"
+    >
+      Dark mode
+    </button>
     <slot />
+    <script is:inline>
+      const storageKey = 'theme';
+      const root = document.documentElement;
+      const toggleButton = document.querySelector('[data-theme-toggle]');
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const applyTheme = (value) => {
+        root.classList.toggle('dark', value === 'dark');
+        toggleButton?.setAttribute('aria-pressed', value === 'dark' ? 'true' : 'false');
+        if (toggleButton) {
+          toggleButton.textContent = value === 'dark' ? 'Light mode' : 'Dark mode';
+        }
+        try {
+          localStorage.setItem(storageKey, value);
+        } catch (error) {
+          // Ignore storage errors (e.g., private mode)
+        }
+      };
+
+      const getPreferredTheme = () => {
+        try {
+          const stored = localStorage.getItem(storageKey);
+          if (stored === 'dark' || stored === 'light') {
+            return stored;
+          }
+        } catch (error) {
+          // Ignore storage errors
+        }
+        return mediaQuery.matches ? 'dark' : 'light';
+      };
+
+      const syncTheme = () => {
+        const next = getPreferredTheme();
+        applyTheme(next);
+      };
+
+      mediaQuery.addEventListener('change', syncTheme);
+      toggleButton?.addEventListener('click', () => {
+        const current = root.classList.contains('dark') ? 'dark' : 'light';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      syncTheme();
+    </script>
   </body>
 </html>
