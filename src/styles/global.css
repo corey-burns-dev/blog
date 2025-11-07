@@ -12,6 +12,9 @@
   --color-border: 229 231 235;
   --color-accent: 59 130 246;
   --color-accent-hover: 37 99 235;
+  --font-mono:
+    ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono',
+    'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
 html.dark {
@@ -29,12 +32,14 @@ html.dark {
 
 @layer base {
   /* Smooth scrolling */
-  html {
+  :where(html) {
     scroll-behavior: smooth;
   }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  :where(body) {
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     font-size: 1rem;
     line-height: 1.625;
     color: rgb(var(--color-text-primary));
@@ -45,35 +50,32 @@ html.dark {
   }
 
   @media (min-width: 768px) {
-    body {
+    :where(body) {
       font-size: 1.125rem;
     }
   }
 
   /* Interactive elements */
-  button,
-  input,
-  select,
-  textarea {
+  :where(button, input, select, textarea) {
     transition:
       background-color 0.2s ease,
       border-color 0.2s ease;
   }
 
   /* Images */
-  img {
+  :where(img) {
     max-width: 100%;
     height: auto;
     display: block;
   }
 
   /* Utility classes */
-  .prose img {
+  .prose :where(img) {
     border-radius: 0.5rem;
   }
 
   /* Skip to main content link */
-  .sr-only {
+  :where(.sr-only) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -85,8 +87,7 @@ html.dark {
     border-width: 0;
   }
 
-  .sr-only:focus,
-  .focus\:not-sr-only:focus {
+  :where(.sr-only:focus, .focus\:not-sr-only:focus) {
     position: static;
     width: auto;
     height: auto;
