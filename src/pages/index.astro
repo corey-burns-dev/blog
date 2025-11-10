@@ -1,33 +1,54 @@
 ---
-import Layout from '@layouts/main.astro';
 import { getCollection } from 'astro:content';
+import Layout from '@layouts/main.astro';
 
 const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <Layout
   title="Corey Burns - Blog"
   description="Welcome to my blog. Full-stack developer crafting beautiful, performant web experiences."
 >
-  <main class="mx-auto max-w-4xl px-4 py-8">
-    <h1 class="mb-8 text-3xl font-bold">Latest Posts</h1>
-    <div class="space-y-6">
+  <main class="mx-auto max-w-6xl px-4 py-8">
+    <h1 class="mb-12 text-center text-4xl font-bold">Latest Posts</h1>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         posts.map((post) => (
-          <article class="border-b border-gray-200 pb-6">
-            <h2 class="mb-2 text-xl font-semibold">
-              <a href={`/blog/${post.slug}`} class="transition-colors hover:text-blue-600">
-                {post.data.title}
+          <article class="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-800">
+            {post.data.heroImage && (
+              <img
+                src={post.data.heroImage}
+                alt={post.data.title}
+                class="h-48 w-full object-cover"
+              />
+            )}
+            <div class="p-6">
+              <h2 class="mb-2 text-xl font-semibold">
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </p>
+              <p class="mb-4 line-clamp-3 text-gray-700 dark:text-gray-300">
+                {post.data.description}
+              </p>
+              <a
+                href={`/blog/${post.slug}`}
+                class="inline-block rounded bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
+              >
+                Read More
               </a>
-            </h2>
-            <p class="mb-2 text-sm text-gray-600">
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </p>
-            <p class="text-gray-700">{post.data.description}</p>
+            </div>
           </article>
         ))
       }
