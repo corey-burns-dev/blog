@@ -1,0 +1,13 @@
+---
+import MainLayout from './main.astro';
+const { title, description, pubDate } = Astro.props;
+---
+
+<MainLayout title={title} description={description}>
+  <article>
+    <h1>{title}</h1>
+    <p>Published on: {pubDate.toDateString()}</p>
+    <hr />
+    <slot />
+  </article>
+</MainLayout>

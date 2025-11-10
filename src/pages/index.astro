@@ -1,12 +1,36 @@
 ---
 import Layout from '@layouts/main.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
 ---
 
 <Layout
   title="Corey Burns - Blog"
   description="Welcome to my blog. Full-stack developer crafting beautiful, performant web experiences."
 >
-  <main class="flex min-h-screen flex-col items-center justify-center text-center">
-    <h1>Under construction</h1>
+  <main class="mx-auto max-w-4xl px-4 py-8">
+    <h1 class="mb-8 text-3xl font-bold">Latest Posts</h1>
+    <div class="space-y-6">
+      {
+        posts.map((post) => (
+          <article class="border-b border-gray-200 pb-6">
+            <h2 class="mb-2 text-xl font-semibold">
+              <a href={`/blog/${post.slug}`} class="transition-colors hover:text-blue-600">
+                {post.data.title}
+              </a>
+            </h2>
+            <p class="mb-2 text-sm text-gray-600">
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </p>
+            <p class="text-gray-700">{post.data.description}</p>
+          </article>
+        ))
+      }
+    </div>
   </main>
 </Layout>
