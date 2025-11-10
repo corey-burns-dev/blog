@@ -57,19 +57,13 @@ html.dark {
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    font-size: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
     line-height: 1.625;
     color: rgb(var(--color-text-primary));
     background-color: rgb(var(--color-bg-primary));
     transition:
       background-color 0.2s ease,
       color 0.2s ease;
-  }
-
-  @media (min-width: 768px) {
-    :where(body) {
-      font-size: 1.125rem;
-    }
   }
 
   /* Interactive elements */
