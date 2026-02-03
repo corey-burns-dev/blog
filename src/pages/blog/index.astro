@@ -1,19 +1,66 @@
 ---
-import { getCollection } from 'astro:content';
-import MainLayout from '../../layouts/main.astro';
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/main.astro";
 
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
+posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const heroImages = [
+	"https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2000&auto=format&fit=crop",
+];
 ---
 
-<MainLayout title="Blog">
-  <h1>Blog</h1>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+<MainLayout title="Blog" description="Stories on product, design, and building on the web.">
+  <main class="mx-auto max-w-6xl px-6 md:px-10 py-28">
+    <header class="mb-16 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.4em] text-[rgb(var(--color-text-muted))]">Blog</p>
+      <h1 class="mt-6 text-4xl md:text-6xl">Latest stories from the studio</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-[rgb(var(--color-text-secondary))]">
+        The same journal as the home page, tailored for readers who want the archives.
+      </p>
+    </header>
+
+    <div class="grid gap-8">
+      {posts.map((post, index) => {
+        const fallbackImage = heroImages[index % heroImages.length];
+        return (
+          <article class="glass-card rounded-[2.25rem] overflow-hidden border border-[rgb(var(--color-border)/0.7)]">
+            <div class="grid gap-6 md:grid-cols-[0.4fr_0.6fr]">
+              <div class="relative min-h-[220px]">
+                <img
+                  src={post.data.heroImage || fallbackImage}
+                  alt={post.data.title}
+                  class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.45)] to-transparent"></div>
+              </div>
+              <div class="flex flex-col justify-between p-8 md:p-10">
+                <div>
+                  <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-text-muted))]">
+                    <span>Story {(index + 1).toString().padStart(2, "0")}</span>
+                    <span class="opacity-30">•</span>
+                    <time>{post.data.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+                  </div>
+                  <h2 class="mt-4 text-2xl md:text-3xl">
+                    <a href={`/blog/${post.slug}`} class="after:hidden block">
+                      {post.data.title}
+                    </a>
+                  </h2>
+                  <p class="mt-4 text-[rgb(var(--color-text-secondary))]">{post.data.description}</p>
+                </div>
+                <div class="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">
+                  Read story
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </main>
 </MainLayout>

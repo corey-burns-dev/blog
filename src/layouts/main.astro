@@ -1,11 +1,11 @@
 ---
-import '@styles/global.css';
+import "@styles/global.css";
 
 const {
-  title = 'Corey Burns',
-  description = 'Corey Burns - Blog',
-  ogImage = '/og-image.png',
-  ogType = 'website',
+	title = "Corey Burns",
+	description = "Corey Burns - Blog",
+	ogImage = "/og-image.png",
+	ogType = "website",
 } = Astro.props;
 ---
 
@@ -38,6 +38,10 @@ const {
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={Astro.url} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
     <script is:inline>
       (function () {
         try {
@@ -53,16 +57,42 @@ const {
     </script>
   </head>
   <body class="antialiased">
-    <button
-      data-theme-toggle
-      class="theme-toggle"
-      type="button"
-      aria-label="Toggle color theme"
-      aria-pressed="false"
-    >
-      Dark mode
-    </button>
-    <slot />
+    <header class="fixed top-0 left-0 right-0 z-90 p-6 pointer-events-none">
+      <div class="mx-auto max-w-7xl flex items-center justify-between pointer-events-auto">
+        <a href="/" class="text-2xl font-black tracking-tighter text-[rgb(var(--color-text-primary))] after:hidden">
+          COREY <span class="text-[rgb(var(--color-accent))]">BURNS</span>
+        </a>
+
+        <div class="flex items-center gap-4">
+          <nav class="hidden md:flex glass-card px-6 py-2 rounded-full text-sm font-semibold gap-8">
+            <a href="/" class="after:hidden hover:text-[rgb(var(--color-accent))]">Blog</a>
+            <a href="/about" class="after:hidden hover:text-[rgb(var(--color-accent))]">About</a>
+          </nav>
+
+          <button
+            data-theme-toggle
+            class="theme-toggle flex items-center gap-2 text-sm tracking-wide"
+            type="button"
+            aria-label="Toggle color theme"
+          >
+            Theme
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="pt-16">
+      <slot />
+    </div>
+
+    <footer class="mt-20 border-t border-[rgb(var(--color-border)/0.3)] py-12">
+      <div class="mx-auto max-w-7xl px-6 text-center">
+        <p class="text-sm text-[rgb(var(--color-text-muted))]">
+          &copy; {new Date().getFullYear()} Corey Burns. Built with Bun & Astro.
+        </p>
+      </div>
+    </footer>
+
     <script is:inline>
       const storageKey = 'theme';
       const root = document.documentElement;
@@ -73,31 +103,23 @@ const {
         root.classList.toggle('dark', value === 'dark');
         toggleButton?.setAttribute('aria-pressed', value === 'dark' ? 'true' : 'false');
         if (toggleButton) {
-          toggleButton.textContent = value === 'dark' ? 'Light mode' : 'Dark mode';
+          toggleButton.textContent = value === 'dark' ? 'Light' : 'Dark';
         }
         try {
           localStorage.setItem(storageKey, value);
         } catch (error) {
-          // Ignore storage errors (e.g., private mode)
         }
       };
 
       const getPreferredTheme = () => {
         try {
           const stored = localStorage.getItem(storageKey);
-          if (stored === 'dark' || stored === 'light') {
-            return stored;
-          }
-        } catch (error) {
-          // Ignore storage errors
-        }
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch (error) {}
         return mediaQuery.matches ? 'dark' : 'light';
       };
 
-      const syncTheme = () => {
-        const next = getPreferredTheme();
-        applyTheme(next);
-      };
+      const syncTheme = () => applyTheme(getPreferredTheme());
 
       mediaQuery.addEventListener('change', syncTheme);
       toggleButton?.addEventListener('click', () => {
@@ -108,4 +130,3 @@ const {
       syncTheme();
     </script>
   </body>
-</html>

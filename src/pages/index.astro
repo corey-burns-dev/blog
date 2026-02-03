@@ -1,57 +1,63 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '@layouts/main.astro';
+import { getCollection } from "astro:content";
+import Layout from "@layouts/main.astro";
 
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
 posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const featuredPosts = posts.slice(0, 8);
+const heroImages = [
+	"https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop",
+	"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2000&auto=format&fit=crop",
+];
 ---
 
 <Layout
   title="Corey Burns - Blog"
   description="Welcome to my blog. Full-stack developer crafting beautiful, performant web experiences."
 >
-  <main class="mx-auto max-w-6xl px-4 py-8">
-    <h1 class="mb-12 text-center text-4xl font-bold">Latest Posts</h1>
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {
-        posts.map((post) => (
-          <article class="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-800">
-            {post.data.heroImage && (
-              <img
-                src={post.data.heroImage}
-                alt={post.data.title}
-                class="h-48 w-full object-cover"
-              />
-            )}
-            <div class="p-6">
-              <h2 class="mb-2 text-xl font-semibold">
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
-                >
-                  {post.data.title}
-                </a>
-              </h2>
-              <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
-                {post.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-              <p class="mb-4 line-clamp-3 text-gray-700 dark:text-gray-300">
-                {post.data.description}
-              </p>
-              <a
-                href={`/blog/${post.slug}`}
-                class="inline-block rounded bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
-              >
-                Read More
-              </a>
+  <main class="mx-auto max-w-6xl px-6 md:px-10 py-28">
+    <div class="grid gap-8">
+      {featuredPosts.map((post, index) => {
+        const fallbackImage = heroImages[index % heroImages.length];
+        return (
+          <article class={`glass-card reveal rounded-[2.25rem] overflow-hidden border border-[rgb(var(--color-border)/0.7)]`}>
+            <div class="grid gap-6 md:grid-cols-[0.42fr_0.58fr]">
+              <div class="relative min-h-[220px] md:min-h-[240px]">
+                <img
+                  src={post.data.heroImage || fallbackImage}
+                  alt={post.data.title}
+                  class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.45)] to-transparent"></div>
+              </div>
+              <div class="flex flex-col justify-between p-8 md:p-10">
+                <div>
+                  <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-text-muted))]">
+                    <span>Story {(index + 1).toString().padStart(2, "0")}</span>
+                    <span class="opacity-30">•</span>
+                    <time>{post.data.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+                  </div>
+                  <h2 class="mt-4 text-2xl md:text-3xl">
+                    <a href={`/blog/${post.slug}`} class="after:hidden block">
+                      {post.data.title}
+                    </a>
+                  </h2>
+                  <p class="mt-4 text-[rgb(var(--color-text-secondary))]">{post.data.description}</p>
+                </div>
+                <div class="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">
+                  Read story
+                  <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </div>
             </div>
           </article>
-        ))
-      }
+        );
+      })}
     </div>
   </main>
 </Layout>

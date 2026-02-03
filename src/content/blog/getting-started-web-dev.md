@@ -1,34 +1,26 @@
 ---
-title: 'Getting Started with Web Development'
-description:
-  'A beginner-friendly guide to starting your journey in web development, covering the basics and
-  essential tools.'
-pubDate: 2025-11-08
-heroImage: '../../assets/blog-placeholder-1.jpg'
+title: "Getting Started in Modern Web Dev"
+pubDate: 2025-12-02
+description: "A crisp starter kit for building fast, elegant web experiences in 2026."
+heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop"
 ---
 
-## Getting Started with Web Development
+## The modern stack, simplified
 
-Web development is an exciting field that combines creativity and logic. Whether you're looking to
-build websites, web apps, or just understand how the internet works, getting started can feel
-overwhelming. But don't worry – with the right approach, you'll be coding in no time.
+If you’re starting today, focus on a stack that is fast to ship and easy to maintain. The point is momentum, not complexity.
 
-## Why Web Development?
+![Laptop glow](https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?q=80&w=1600&auto=format&fit=crop)
 
-The web is everywhere, and learning to build for it opens up countless opportunities. You can create
-anything from simple personal sites to complex applications used by millions.
+### A clean baseline
 
-## Essential Tools
+- Component-driven UI with strong conventions.
+- Design tokens to keep visuals consistent.
+- Performance first: image sizing, lazy loading, minimal scripts.
 
-Start with these basics:
+### The workflow
 
-- **HTML**: The structure of web pages
-- **CSS**: Styling and layout
-- **JavaScript**: Adding interactivity
+Design with intent, then implement in small, reviewable slices. Every iteration should make the product feel calmer and more deliberate.
 
-## Next Steps
+![Minimal desk](https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop)
 
-Practice regularly, build projects, and don't be afraid to experiment. The web development community
-is incredibly supportive – join forums, attend meetups, and keep learning!
-
-Remember, every expert was once a beginner. Keep coding!
+Ship fast, polish later, and keep your system tight.

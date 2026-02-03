@@ -1,0 +1,46 @@
+:root {
+	--accent-blue: 96 165 250; /* #60a5fa */
+	--accent-violet: 168 85 247; /* #a855f7 */
+	--accent-indigo: 129 140 248; /* #818cf8 */
+
+	--neutral-100: 255 255 255;
+	--neutral-200: 240 242 247;
+	--neutral-300: 218 223 232;
+	--neutral-800: 34 38 52;
+	--neutral-900: 18 20 33;
+
+	--color-bg-primary: 245 245 252;
+	--color-bg-secondary: 255 255 255;
+	--color-text-primary: 20 22 38;
+	--color-text-secondary: 55 60 78;
+	--color-text-muted: 120 126 148;
+	--color-border: 228 230 242;
+	--color-accent: var(--accent-blue);
+	--color-accent-hover: var(--accent-violet);
+
+	--glass-bg: rgba(255, 255, 255, 0.58);
+	--glass-border: rgba(255, 255, 255, 0.42);
+	--glass-blur: 24px;
+
+	--font-body: "Space Grotesk", system-ui, sans-serif;
+	--font-display: "Fraunces", "Outfit", serif;
+	--font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
+		Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+html.dark {
+	--color-bg-primary: 8 9 18;
+	--color-bg-secondary: 14 16 30;
+	--color-text-primary: 245 247 255;
+	--color-text-secondary: 202 208 230;
+	--color-text-muted: 148 154 178;
+	--color-border: 38 42 68;
+	--color-accent: var(--accent-indigo);
+	--color-accent-hover: var(--accent-violet);
+
+	--glass-bg: rgba(14, 16, 30, 0.74);
+	--glass-border: rgba(255, 255, 255, 0.08);
+	--glass-blur: 30px;
+
+	color-scheme: dark;
+}

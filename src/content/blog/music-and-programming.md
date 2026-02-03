@@ -1,35 +1,26 @@
 ---
-title: 'Music and Programming: Unexpected Connections'
-description:
-  'Discovering the parallels between composing music and writing code, and how musical thinking can
-  improve your programming skills.'
-pubDate: 2025-11-06
-heroImage: '../../assets/blog-placeholder-3.jpg'
+title: "Music and Programming"
+pubDate: 2026-01-18
+description: "Rhythm, structure, and flow show up in both music and code—here’s how I use it."
+heroImage: "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=2000&auto=format&fit=crop"
 ---
 
-## Music and Programming: Unexpected Connections
+## Rhythm in the build
 
-At first glance, music and programming seem like completely different disciplines. But dig deeper,
-and you'll find fascinating parallels that can make you a better developer.
+Great code has tempo: a predictable cadence, a clean progression, and just enough tension to keep you engaged.
 
-## Rhythm and Structure
+![Studio instruments](https://images.unsplash.com/photo-1485579149621-3123dd979885?q=80&w=1600&auto=format&fit=crop)
 
-Just like a musical composition has rhythm and structure, code has patterns and architecture.
-Learning to recognize and create these patterns is key to both.
+### Patterns that repeat well
 
-## Improvisation vs. Planning
+- Clear naming that feels like a steady beat.
+- Reusable components that carry the melody.
+- Consistent spacing that keeps the mix clean.
 
-Great musicians know when to improvise and when to follow the score. Programmers face similar
-choices between flexible, adaptable code and rigid, predictable systems.
+### The outcome
 
-## Harmony and Compatibility
+The result is software that feels composed—not chaotic. The UI becomes a track you want to replay.
 
-In music, notes harmonize to create beautiful sounds. In programming, components need to work
-together seamlessly. Understanding harmony helps you design better systems.
+![Studio lights](https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1600&auto=format&fit=crop)
 
-## The Creative Process
-
-Both music and code are creative endeavors. They require imagination, discipline, and the
-willingness to iterate until you get it right.
-
-Whether you're debugging or composing, remember: creativity knows no bounds!
+That’s the vibe I chase in every build.

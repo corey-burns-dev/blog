@@ -1,31 +1,24 @@
 ---
-title: 'The Beauty of Mathematics in Everyday Life'
-description:
-  'Exploring how math shapes our world, from patterns in nature to problem-solving techniques we use
-  daily.'
-pubDate: 2025-11-07
-heroImage: '../../assets/blog-placeholder-2.jpg'
+title: "The Beauty of Math"
+pubDate: 2026-01-05
+description: "Why math makes design systems feel inevitable—and how it shapes my layouts."
+heroImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2000&auto=format&fit=crop"
 ---
 
-## The Beauty of Mathematics in Everyday Life
+## Quiet structure, bold results
 
-Mathematics isn't just about numbers and equations – it's a way of thinking that helps us understand
-and shape the world around us. From the spirals of galaxies to the algorithms powering our
-smartphones, math is everywhere.
+Math isn’t just numbers. It’s balance, proportion, and predictability. The best interfaces borrow that calm.
 
-## Patterns in Nature
+![Geometric light](https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop)
 
-Look at a pinecone or a sunflower, and you'll see the Fibonacci sequence in action. These
-mathematical patterns aren't accidents; they're the language of nature itself.
+### Where it shows up
 
-## Problem-Solving Power
+- Grid systems that scale without breaking.
+- Consistent type ratios for readable hierarchy.
+- Spacing rhythms that make layouts feel effortless.
 
-Math teaches us logical thinking and systematic approaches to challenges. Whether you're budgeting
-your expenses or planning a road trip, mathematical thinking helps you make better decisions.
+### The takeaway
 
-## Why It Matters
+If the system is right, the visuals feel inevitable. That’s the kind of elegance I want every page to carry.
 
-In our increasingly complex world, mathematical literacy is more important than ever. It empowers us
-to understand technology, make informed choices, and appreciate the underlying order in chaos.
-
-Keep exploring – there's beauty in every equation!
+![Abstract geometry](https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop)
