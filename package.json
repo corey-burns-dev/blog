@@ -1,43 +1,22 @@
 {
-	"name": "blog",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro check && astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"lint": "biome lint .",
-		"format": "biome format . --write",
-		"check": "biome check . --write",
-		"commit": "cz",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"@astrojs/check": "^0.9.6",
-		"@biomejs/biome": "^1.9.4",
-		"@commitlint/cli": "^20.4.1",
-		"@commitlint/config-conventional": "^20.4.1",
-		"@tailwindcss/vite": "^4.1.18",
-		"astro": "^5.17.1",
-		"commitizen": "^4.3.1",
-		"cz-conventional-changelog": "^3.3.0",
-		"husky": "^9.1.7",
-		"lint-staged": "^16.2.7",
-		"tailwindcss": "^4.1.18"
-	},
-	"lint-staged": {
-		"*.{astro,css,scss,md,mdx}": [
-			"biome format --write --no-errors-on-unmatched"
-		],
-		"*.{js,ts,cjs,mjs,cts,mts,jsx,tsx,json,jsonc}": [
-			"biome format --write --no-errors-on-unmatched",
-			"biome lint --write --no-errors-on-unmatched"
-		]
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
-	}
+  "name": "blog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check . --write",
+    "update:latest": "sh ./scripts/bun-update-latest.sh"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@biomejs/biome": "^2.3.13",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.17.1",
+    "tailwindcss": "^4.1.18"
+  }
 }
