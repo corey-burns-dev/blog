@@ -1,42 +1,43 @@
 {
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.detectIndentation": false,
-  "editor.trimAutoWhitespace": true,
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-  "editor.formatOnSave": true,
-  "editor.rulers": [100],
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 100,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "eslint.validate": ["javascript", "typescript", "astro"],
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true
-  },
-  "[javascript]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
-  "[typescript]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
-  "[html]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
-  "[css]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
-  "[json]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  }
+	"editor.insertSpaces": true,
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"editor.trimAutoWhitespace": true,
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"editor.formatOnSave": true,
+	"editor.rulers": [100],
+	"editor.wordWrap": "wordWrapColumn",
+	"editor.wordWrapColumn": 100,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.validate": ["javascript", "typescript", "astro"],
+	"[astro]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"[typescript]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"[html]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"[css]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"[json]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"DockerRun.DisableAutoGenerateConfig": true
 }
