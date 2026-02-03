@@ -24,8 +24,9 @@
 
 	--font-body: "Space Grotesk", system-ui, sans-serif;
 	--font-display: "Fraunces", "Outfit", serif;
-	--font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
-		Consolas, "Liberation Mono", "Courier New", monospace;
+	--font-mono:
+		"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
 }
 
 html.dark {

@@ -10,7 +10,8 @@
 	:where(body) {
 		font-family: var(--font-body);
 		background-color: rgb(var(--color-bg-primary));
-		background-image: radial-gradient(
+		background-image:
+			radial-gradient(
 				1100px circle at 12% 8%,
 				rgba(var(--accent-indigo), 0.22),
 				transparent 60%
@@ -26,8 +27,9 @@
 				transparent 65%
 			);
 		color: rgb(var(--color-text-primary));
-		transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s
-			ease;
+		transition:
+			background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+			color 0.6s ease;
 		min-height: 100vh;
 		position: relative;
 		overflow-x: hidden;
