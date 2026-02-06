@@ -5,8 +5,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 ---
 
 <MainLayout title={title} description={description}>
-  <article class="mx-auto max-w-4xl px-6 py-24">
-    <header class="mb-14 text-center">
+  <article class="max-w-4xl px-6 py-24 mx-auto">
+    <header class="text-center mb-14">
       <div class="mb-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">
         <span>Article</span>
         <span class="opacity-30">•</span>
@@ -22,10 +22,10 @@ const { title, description, pubDate, heroImage } = Astro.props;
           <img
             src={heroImage}
             alt={title}
-            class="absolute inset-0 h-full w-full object-cover"
+            class="absolute inset-0 object-cover w-full h-full"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-gradient-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.35)] to-transparent"></div>
+          <div class="absolute inset-0 bg-linear-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.35)] to-transparent"></div>
         </div>
       </div>
     )}
@@ -34,7 +34,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
       <slot />
     </div>
 
-    <footer class="mt-16 flex justify-center">
+    <footer class="flex justify-center mt-16">
       <a href="/blog" class="glass-card px-8 py-3 rounded-full font-semibold uppercase tracking-[0.2em] transition-all hover:-translate-y-1 text-[rgb(var(--color-text-primary))]">
         Back to all stories
       </a>
