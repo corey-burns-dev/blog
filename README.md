@@ -1,56 +1,41 @@
-# Corey Burns - Blog
+# Corey Burns - Professional Blog
 
-> 🧑‍🚀 **Seasoned astronaut?**
+Welcome to the personal blog of **Corey Burns**, a full-stack developer passionate about performance, design, and modern web technologies. This blog is built with **Astro** for lightning-fast delivery and **Bun** for a modern development experience.
 
-Features:
+## ✨ Features
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- ⚡️ **High Performance**: 100/100 Lighthouse scores.
+- 🎨 **Modern Design**: Clean, minimal, and fully reskwponsive with dark mode support.
+- 🔍 **SEO Optimized**: Complete with Open Graph, Twitter cards, and semantic HTML.
+- 📦 **Content Collections**: Fully typed blog posts using Astro's content schema.
+- 🌑 **Dark Mode**: Smooth theme transitions with local storage persistence.
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
 ```text
-├── public/
+├── public/           # Static assets (images, icons, etc.)
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+│   ├── components/    # Reusable Astro components
+│   ├── content/       # Blog posts (Markdown/MDX)
+│   ├── layouts/       # Page templates
+│   └── pages/         # Website routes
+├── astro.config.mjs  # Astro configuration
+└── package.json      # Project dependencies and scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a
-route based on its file name.
+## 🧞 Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any
-Astro/React/Vue/Svelte/Preact components.
+All commands are run from the root of the project:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use
-`getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using
-an optional schema. See
-[Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn
-more.
+| Command | Action |
+| :--- | :--- |
+| `bun install` | Install all dependencies |
+| `bun dev` | Start local development server |
+| `bun build` | Build for production |
+| `bun preview` | Preview production build locally |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🛠️ Built With
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+- [Astro](https://astro.build/) - Web framework for content-driven websites.
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework.
+- [Bun](https://bun.sh/) - Fast all-in-one JavaScript runtime.
