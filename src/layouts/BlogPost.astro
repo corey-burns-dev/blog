@@ -1,10 +1,9 @@
 ---
 import MainLayout from "./main.astro";
 
-const { title, description, pubDate, heroImage } = Astro.props;
----
+const { title, description, pubDate, heroImage, author = 'Corey Burns', keywords } = Astro.props;
 
-<MainLayout title={title} description={description}>
+<MainLayout title={title} description={description} ogImage={heroImage} ogType="article" pubDate={pubDate} author={author} keywords={keywords}>
   <article class="max-w-4xl px-6 py-24 mx-auto">
     <header class="text-center mb-14">
       <div class="mb-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">

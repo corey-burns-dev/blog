@@ -6,7 +6,15 @@ const {
 	description = "Corey Burns - Blog",
 	ogImage = "/og-image.png",
 	ogType = "website",
+	pubDate,
+	author = "Corey Burns",
+	keywords = "Corey Burns, Blog, Developer, Full-stack, Software Engineering, Web Development, JavaScript, TypeScript, Astro",
 } = Astro.props;
+
+const absoluteOgImage =
+	typeof ogImage === "string" && ogImage.startsWith("/")
+		? `${Astro.url.origin}${ogImage}`
+		: ogImage;
 ---
 
 <!doctype html>
@@ -21,27 +29,64 @@ const {
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Corey Burns" />
-    <meta name="keywords" content="Corey Burns, Blog, Developer, Full-stack, Software Engineering, Web Development, JavaScript, TypeScript, Astro" />
+    <meta name="author" content={author} />
+    <meta name="keywords" content={keywords} />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={Astro.url.origin} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:site_name" content="Corey Burns Blog" />
+
+    {ogType === 'article' && pubDate && (
+      <>
+        <meta property="article:published_time" content={pubDate.toISOString()} />
+        <meta property="article:author" content={author} />
+      </>
+    )}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={absoluteOgImage} />
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={Astro.url} />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <script is:inline type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": Astro.url.origin,
+        "name": title,
+        "description": description,
+        "author": { "@type": "Person", "name": author },
+        "keywords": keywords
+      })}
+    </script>
+
+    {ogType === 'article' && pubDate && (
+      <script is:inline type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": Astro.url.href
+          },
+          "headline": title,
+          "description": description,
+          "author": { "@type": "Person", "name": author },
+          "datePublished": pubDate.toISOString(),
+          "image": absoluteOgImage
+        })}
+      </script>
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">

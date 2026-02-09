@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (optional - only if you have a sitemap)
-# Sitemap: https://yoursite.com/sitemap.xml
+# Sitemap location - replace with full URL if your host requires it.
+Sitemap: /sitemap.xml
