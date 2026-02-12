@@ -1,7 +1,15 @@
 ---
 import MainLayout from "./main.astro";
 
-const { title, description, pubDate, heroImage, author = 'Corey Burns', keywords } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	heroImage,
+	author = "Corey Burns",
+	keywords,
+} = Astro.props;
+---
 
 <MainLayout title={title} description={description} ogImage={heroImage} ogType="article" pubDate={pubDate} author={author} keywords={keywords}>
   <article class="max-w-4xl px-6 py-24 mx-auto">

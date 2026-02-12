@@ -1,6 +1,7 @@
 import { getCollection } from "astro:content";
+import type { APIContext } from "astro";
 
-export async function GET({ request }) {
+export async function GET({ request }: APIContext) {
 	const origin = new URL(request.url).origin;
 	const posts = await getCollection("blog");
 

@@ -1,7 +1,8 @@
 ---
 title: "Arch is for noobs"
 pubDate: 2026-02-06
-description: "For years, Arch Linux has been branded elitist and unfriendly to newcomers. It might be time we stop denying the obvious."
+description: "Why Arch Linux and CachyOS are actually better for beginners and modern hardware. Forget the elitist myths; learn why bleeding-edge stability is the way to go."
+keywords: "Arch Linux, CachyOS, Linux for beginners, archinstall, Steam Deck, Linux performance, AMD, operating systems"
 heroImage: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2000&auto=format&fit=crop"
 ---
 
