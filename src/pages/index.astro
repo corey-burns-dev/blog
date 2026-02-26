@@ -1,17 +1,17 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/main.astro";
+import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const featuredPosts = posts.slice(0, 8);
-const heroImages = [
-	"https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop",
-	"https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?q=80&w=2000&auto=format&fit=crop",
-	"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000&auto=format&fit=crop",
-	"https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=2000&auto=format&fit=crop",
-	"https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop",
-	"https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2000&auto=format&fit=crop",
+
+const palettes = [
+	["#ff0055", "#00ff88", "#0066ff"],
+	["#ff6b00", "#ff00ff", "#00ffff"],
+	["#ffff00", "#ff0000", "#00ff00"],
+	["#8800ff", "#ff0088", "#00ff44"],
+	["#00aaff", "#ff4400", "#aaff00"],
 ];
 ---
 
@@ -19,43 +19,116 @@ const heroImages = [
   title="Corey Burns - Blog"
   description="Welcome to my blog. Full-stack developer crafting beautiful, performant web experiences."
 >
-  <main class="mx-auto max-w-6xl px-6 md:px-10 py-28">
-    <div class="grid gap-8">
+  <main class="mx-auto max-w-6xl px-6 py-4 lg:px-12 pb-24">
+    <!-- Corrupted status bar -->
+    <div class="mb-12 flex flex-wrap gap-4 border border-white/5 bg-white/2 px-4 py-3 font-mono text-[10px] text-white/25">
+      <span>
+        STATUS: <span class="text-[#00ff88]">ONLINE</span>
+      </span>
+      <span>ENTRIES: {posts.length}</span>
+      <span>
+        ERRORS: <span class="text-[#ff0055]">{Math.floor(Math.random() * 99) + 1}</span>
+      </span>
+      <span>UPTIME: 847d:14h:22m</span>
+      <span class="gc-blink">▌</span>
+    </div>
+
+    <div class="space-y-px">
       {featuredPosts.map((post, index) => {
-        const fallbackImage = heroImages[index % heroImages.length];
+        const palette = palettes[index % palettes.length];
+        // Pre-calculate glitch elements for the abstract thumbnail
+        const glitchIntensity = 0.3 + (Math.random() * 0.6); // 0.3 to 0.9 intensity
+        const pixels = Array.from({ length: 12 }).map(() => ({
+          width: 8 + Math.random() * 40,
+          height: 2 + Math.random() * 12,
+          left: Math.random() * 100,
+          top: Math.random() * 100,
+          opacityHover: 0.3 + Math.random() * 0.4,
+          xHover: (Math.random() - 0.5) * 10,
+        }));
+
         return (
-          <article class={`glass-card reveal rounded-[2.25rem] overflow-hidden border border-[rgb(var(--color-border)/0.7)]`}>
-            <div class="grid gap-6 md:grid-cols-[0.42fr_0.58fr]">
-              <div class="relative min-h-[220px] md:min-h-[240px]">
-                <img
-                  src={post.data.heroImage || fallbackImage}
-                  alt={post.data.title}
-                  class="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
+          <a href={`/blog/${post.slug}`} class="block after:hidden outline-none">
+            <article
+              class="gc-entry group relative overflow-hidden border border-white/5 transition-all duration-300 hover:border-white/10 hover:-translate-y-1"
+              style={`animation-delay: ${0.1 + index * 0.08}s`}
+            >
+              {/* RGB Channel split on hover */}
+              <div class="relative px-6 py-8 lg:px-10">
+                <div
+                  class="pointer-events-none absolute inset-0 opacity-0 mix-blend-screen transition-opacity duration-200 group-hover:opacity-[0.06]"
+                  style={`transform: translate(3px, 0); background-color: ${palette[0]}`}
                 />
-                <div class="absolute inset-0 bg-gradient-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.45)] to-transparent"></div>
-              </div>
-              <div class="flex flex-col justify-between p-8 md:p-10">
-                <div>
-                  <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-text-muted))]">
-                    <span>Story {(index + 1).toString().padStart(2, "0")}</span>
-                    <span class="opacity-30">•</span>
-                    <time>{post.data.pubDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+                <div
+                  class="pointer-events-none absolute inset-0 opacity-0 mix-blend-screen transition-opacity duration-200 group-hover:opacity-[0.04]"
+                  style={`transform: translate(-3px, 0); background-color: ${palette[1]}`}
+                />
+
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div class="flex-1 pr-6">
+                    <div class="mb-2 flex items-center gap-3">
+                      <span class="text-[10px] text-white/20">
+                        {post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                      </span>
+                      {/* Glitch intensity meter */}
+                      <div class="flex gap-px opacity-30 group-hover:opacity-80 transition-opacity duration-300">
+                        {Array.from({ length: 10 }).map((_, i) => (
+                          <div
+                            class="h-2 w-1 transition-colors duration-300"
+                            style={`background-color: ${i / 10 < glitchIntensity ? palette[0] : 'rgba(255,255,255,0.05)'}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <h2 class="text-2xl font-bold uppercase tracking-tight text-white/85 transition-all sm:text-3xl relative overflow-hidden group-hover:text-white">
+                      <span class="relative z-10">{post.data.title}</span>
+                    </h2>
+
+                    <p class="mt-4 max-w-xl text-xs leading-relaxed text-white/30 transition-colors group-hover:text-white/45">
+                      {post.data.description}
+                    </p>
                   </div>
-                  <h2 class="mt-4 text-2xl md:text-3xl">
-                    <a href={`/blog/${post.slug}`} class="after:hidden block">
-                      {post.data.title}
-                    </a>
-                  </h2>
-                  <p class="mt-4 text-[rgb(var(--color-text-secondary))]">{post.data.description}</p>
+
+                  {/* Abstract glitch thumbnail */}
+                  <div class="hidden h-28 w-40 shrink-0 overflow-hidden border border-white/5 lg:block relative transition-colors group-hover:border-white/20">
+                    <div class="relative h-full w-full bg-black">
+                      {pixels.map((p, i) => (
+                        <div
+                          class="absolute transition-all duration-300 opacity-5 group-hover:opacity-(--h-op)"
+                          style={`
+                            width: ${p.width}px;
+                            height: ${p.height}px;
+                            left: ${p.left}%;
+                            top: ${p.top}%;
+                            background-color: ${palette[i % 3]};
+                            --h-op: ${p.opacityHover};
+                            transform: translateX(0);
+                          `}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div class="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">
-                  Read story
-                  <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+
+                {/* Palette strip */}
+                <div class="mt-4 flex gap-1">
+                  {palette.map((color) => (
+                    <div
+                      class="h-1 transition-all duration-500 opacity-20 group-hover:opacity-80 w-[12px] group-hover:w-[40px]"
+                      style={`background-color: ${color}`}
+                    />
+                  ))}
                 </div>
               </div>
-            </div>
-          </article>
+
+              {/* Glitch bottom line */}
+              <div
+                class="absolute bottom-0 left-0 h-px transition-all duration-300 w-0 group-hover:w-full"
+                style={`background: linear-gradient(90deg, ${palette[0]}, ${palette[1]}, ${palette[2]}, transparent)`}
+              />
+            </article>
+          </a>
         );
       })}
     </div>

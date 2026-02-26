@@ -18,13 +18,12 @@ const absoluteOgImage =
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0a0a" />
 
     <!-- SEO -->
     <title>{title}</title>
@@ -87,95 +86,88 @@ const absoluteOgImage =
         })}
       </script>
     )}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <script is:inline>
-      (function () {
-        try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const shouldUseDark = stored ? stored === 'dark' : prefersDark;
-          document.documentElement.classList.toggle('dark', shouldUseDark);
-        } catch (error) {
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          document.documentElement.classList.toggle('dark', prefersDark);
-        }
-      })();
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   </head>
-  <body class="antialiased">
-    <header class="fixed top-0 left-0 right-0 z-90 p-6 pointer-events-none">
-      <div class="mx-auto max-w-7xl flex items-center justify-between pointer-events-auto">
-        <a href="/" class="text-2xl font-black tracking-tighter text-[rgb(var(--color-text-primary))] after:hidden">
-          COREY <span class="text-[rgb(var(--color-accent))]">BURNS</span>
-        </a>
-
-        <div class="flex items-center gap-4">
-          <nav class="hidden md:flex glass-card px-6 py-2 rounded-full text-sm font-semibold gap-8">
-            <a href="/" class="after:hidden hover:text-[rgb(var(--color-accent))]">Blog</a>
-            <a href="/about" class="after:hidden hover:text-[rgb(var(--color-accent))]">About</a>
-          </nav>
-
-          <button
-            data-theme-toggle
-            class="theme-toggle flex items-center gap-2 text-sm tracking-wide"
-            type="button"
-            aria-label="Toggle color theme"
-          >
-            Theme
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <div class="pt-16">
-      <slot />
+  <body class="antialiased min-h-screen bg-[#0a0a0a] text-white" style="font-family: 'JetBrains Mono', 'Fira Code', monospace;">
+    <!-- CRT scanline effect -->
+    <div class="pointer-events-none fixed inset-0 z-50 overflow-hidden mix-blend-overlay">
+      <div
+        id="scanline"
+        class="absolute h-[2px] w-full opacity-[0.07]"
+        style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);"
+      ></div>
     </div>
 
-    <footer class="mt-20 border-t border-[rgb(var(--color-border)/0.3)] py-12">
-      <div class="mx-auto max-w-7xl px-6 text-center">
-        <p class="text-sm text-[rgb(var(--color-text-muted))]">
-          &copy; {new Date().getFullYear()} Corey Burns. Built with Bun & Astro.
+    <!-- Scanline pattern overlay -->
+    <div
+      class="pointer-events-none fixed inset-0 z-40 opacity-[0.03]"
+      style="background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px);"
+    ></div>
+
+    <div class="relative z-10 mx-auto max-w-6xl px-6 py-12 lg:px-12">
+      <!-- Header with glitch effect -->
+      <header class="gc-fade mb-16">
+        <a
+          href="/"
+          class="mb-6 inline-block text-[10px] uppercase tracking-[0.3em] text-white/20 transition hover:text-white/50 after:hidden"
+        >
+          [ESC] HOME
+        </a>
+        <a
+          href="/about"
+          class="ml-6 mb-6 inline-block text-[10px] uppercase tracking-[0.3em] text-white/20 transition hover:text-white/50 after:hidden"
+        >
+          [CMD] ABOUT
+        </a>
+
+        <div class="relative">
+          <h1
+            class="gc-glitch-title text-5xl font-bold uppercase tracking-tighter text-white/90 sm:text-7xl lg:text-8xl"
+            data-text="COREY//BURNS"
+          >
+            COREY<span class="text-[#ff0055]">//</span>BURNS
+          </h1>
+          <p class="mt-3 text-xs text-white/30">
+            <span class="text-[#00ff88]">█</span> Full-Stack Developer & Product Designer
+          </p>
+        </div>
+      </header>
+
+      <slot />
+
+      <!-- Terminal-style footer -->
+      <footer class="gc-fade mt-16 border border-white/5 bg-white/1 p-6 font-mono text-[11px] leading-relaxed text-white/25">
+        <p>
+          <span class="text-[#00ff88]">$</span> cat about.txt
         </p>
-      </div>
-    </footer>
+        <p class="mt-2 text-white/35">
+          Corey Burns is a full-stack product designer and engineer. Working across systems, generative AI, and performant web experiences to find harmony between computation and design.
+        </p>
+        <p class="mt-4">
+          <span class="text-[#00ff88]">$</span> echo $CONTACT
+        </p>
+        <p class="text-white/40">hello@coreyburns.dev</p>
+        <p class="mt-4">
+          <span class="text-[#00ff88]">$</span> <span class="gc-blink">▌</span>
+        </p>
+      </footer>
+    </div>
 
+    <!-- Scanline Animation Script -->
     <script is:inline>
-      const storageKey = 'theme';
-      const root = document.documentElement;
-      const toggleButton = document.querySelector('[data-theme-toggle]');
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-      const applyTheme = (value) => {
-        root.classList.toggle('dark', value === 'dark');
-        toggleButton?.setAttribute('aria-pressed', value === 'dark' ? 'true' : 'false');
-        if (toggleButton) {
-          toggleButton.textContent = value === 'dark' ? 'Light' : 'Dark';
-        }
-        try {
-          localStorage.setItem(storageKey, value);
-        } catch (error) {
-        }
-      };
-
-      const getPreferredTheme = () => {
-        try {
-          const stored = localStorage.getItem(storageKey);
-          if (stored === 'dark' || stored === 'light') return stored;
-        } catch (error) {}
-        return mediaQuery.matches ? 'dark' : 'light';
-      };
-
-      const syncTheme = () => applyTheme(getPreferredTheme());
-
-      mediaQuery.addEventListener('change', syncTheme);
-      toggleButton?.addEventListener('click', () => {
-        const current = root.classList.contains('dark') ? 'dark' : 'light';
-        applyTheme(current === 'dark' ? 'light' : 'dark');
-      });
-
-      syncTheme();
+      const scanline = document.getElementById('scanline');
+      if (scanline) {
+        let frame = 0;
+        const tick = () => {
+          frame++;
+          scanline.style.top = `${(frame * 2) % window.innerHeight}px`;
+          requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
     </script>
   </body>
+</html>

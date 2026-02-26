@@ -3,18 +3,20 @@ import MainLayout from "../layouts/main.astro";
 ---
 
 <MainLayout title="About Corey Burns" description="A quick look at Corey Burns and the work behind the blog.">
-  <main class="mx-auto max-w-5xl px-6 md:px-10 py-28">
-    <header class="mb-12">
-      <p class="text-xs font-semibold uppercase tracking-[0.4em] text-[rgb(var(--color-text-muted))]">About</p>
-      <h1 class="mt-6 text-4xl md:text-6xl">Designing with intention, shipping with speed.</h1>
-      <p class="mt-6 max-w-2xl text-lg text-[rgb(var(--color-text-secondary))]">
+  <main class="mx-auto max-w-5xl px-6 lg:px-12 py-12 pb-24 text-white">
+    <header class="mb-16 gc-fade">
+      <p class="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/40">~/about.md</p>
+      <h1 class="mt-6 text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter" data-text="DESIGNING WITH INTENTION">
+        DESIGNING WITH INTENTION, <br/><span class="text-white/40">SHIPPING WITH SPEED.</span>
+      </h1>
+      <p class="mt-8 max-w-2xl text-sm leading-relaxed text-white/50 border-l-2 border-[#00ff88] pl-4">
         I’m Corey Burns, a full-stack product designer and engineer. I partner with teams to translate ambitious ideas into
         performant, human-centered experiences.
       </p>
     </header>
 
     <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <div class="glass-card rounded-[2.5rem] p-8 md:p-12 article-content">
+      <div class="gc-entry border border-white/5 bg-white/1 p-8 md:p-12 article-content hover:border-white/10 transition-colors" style="animation-delay: 0.1s">
         <p>
           My work blends design systems, frontend engineering, and rapid experimentation. I’m obsessed with crafting tools
           and interfaces that feel inevitable—simple, fast, and memorable.
@@ -23,19 +25,19 @@ import MainLayout from "../layouts/main.astro";
           When I’m not building, I’m documenting processes, refining workflows, and exploring the future of creative AI.
         </p>
       </div>
-      <aside class="glass-card rounded-[2.5rem] p-8 md:p-12">
-        <h2 class="text-2xl">Capabilities</h2>
-        <ul class="mt-6 grid gap-4 text-sm text-[rgb(var(--color-text-secondary))]">
-          <li class="flex items-center gap-3 rounded-2xl border border-[rgb(var(--color-border))] bg-[rgb(var(--color-bg-secondary)/0.7)] px-4 py-3">
-            <span class="h-2 w-2 rounded-full bg-[rgb(var(--color-accent))]"></span>
+      <aside class="gc-entry border border-white/5 bg-white/1 p-8 md:p-12 hover:border-white/10 transition-colors" style="animation-delay: 0.2s">
+        <h2 class="text-xl uppercase font-bold text-white/80">Capabilities</h2>
+        <ul class="mt-8 grid gap-4 text-xs font-mono text-white/60">
+          <li class="flex items-center gap-3">
+            <span class="text-[#00ff88]">[x]</span>
             Product strategy + UX systems
           </li>
-          <li class="flex items-center gap-3 rounded-2xl border border-[rgb(var(--color-border))] bg-[rgb(var(--color-bg-secondary)/0.7)] px-4 py-3">
-            <span class="h-2 w-2 rounded-full bg-[rgb(var(--color-accent))]"></span>
+          <li class="flex items-center gap-3">
+            <span class="text-[#00ff88]">[x]</span>
             Frontend engineering + performance
           </li>
-          <li class="flex items-center gap-3 rounded-2xl border border-[rgb(var(--color-border))] bg-[rgb(var(--color-bg-secondary)/0.7)] px-4 py-3">
-            <span class="h-2 w-2 rounded-full bg-[rgb(var(--color-accent))]"></span>
+          <li class="flex items-center gap-3">
+            <span class="text-[#00ff88]">[x]</span>
             AI-powered design tooling
           </li>
         </ul>

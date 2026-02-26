@@ -12,38 +12,42 @@ const {
 ---
 
 <MainLayout title={title} description={description} ogImage={heroImage} ogType="article" pubDate={pubDate} author={author} keywords={keywords}>
-  <article class="max-w-4xl px-6 py-24 mx-auto">
-    <header class="text-center mb-14">
-      <div class="mb-6 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[rgb(var(--color-accent))]">
-        <span>Article</span>
-        <span class="opacity-30">•</span>
-        <time>{pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+  <article class="max-w-4xl px-6 py-12 pb-24 mx-auto gc-fade">
+    <header class="mb-14">
+      <div class="mb-6 flex flex-wrap gap-3 text-[10px] font-mono uppercase text-white/40">
+        <span>~/articles</span>
+        <span class="opacity-30">/</span>
+        <time>{pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
       </div>
-      <h1 class="mb-6 text-4xl md:text-6xl">{title}</h1>
-      {description && <p class="mx-auto max-w-2xl text-lg text-[rgb(var(--color-text-secondary))]">{description}</p>}
+      <h1 class="mb-6 text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter relative">
+        <span class="relative z-10">{title}</span>
+      </h1>
+      {description && <p class="max-w-2xl text-sm leading-relaxed text-white/50 border-l-2 border-[#00ff88] pl-4">{description}</p>}
     </header>
 
     {heroImage && (
-      <div class="glass-card mb-10 overflow-hidden rounded-[2.5rem]">
-        <div class="relative h-64 md:h-80">
+      <div class="mb-10 overflow-hidden border border-white/5 relative group">
+        <div class="relative h-64 md:h-[400px]">
           <img
             src={heroImage}
             alt={title}
-            class="absolute inset-0 object-cover w-full h-full"
+            class="absolute inset-0 object-cover w-full h-full grayscale-50 contrast-125 group-hover:grayscale-0 transition-all duration-700"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-linear-to-tr from-[rgb(var(--color-bg-primary)/0.95)] via-[rgb(var(--color-bg-primary)/0.35)] to-transparent"></div>
+          <div class="absolute inset-0 bg-linear-to-tr from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent"></div>
+          {/* Scanlines overlay for image */}
+          <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px);"></div>
         </div>
       </div>
     )}
 
-    <div class="glass-card rounded-[2.5rem] p-8 md:p-14 article-content">
+    <div class="border border-white/5 bg-white/1 p-8 md:p-14 article-content">
       <slot />
     </div>
 
-    <footer class="flex justify-center mt-16">
-      <a href="/blog" class="glass-card px-8 py-3 rounded-full font-semibold uppercase tracking-[0.2em] transition-all hover:-translate-y-1 text-[rgb(var(--color-text-primary))]">
-        Back to all stories
+    <footer class="mt-16 font-mono text-[10px]">
+      <a href="/" class="inline-block border border-white/10 px-6 py-3 uppercase tracking-[0.3em] text-white/50 transition-all hover:bg-white/5 hover:text-white after:hidden outline-none">
+        [ESC] BACK TO ARCHIVE
       </a>
     </footer>
   </article>
